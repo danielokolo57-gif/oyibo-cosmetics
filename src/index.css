@@ -94,7 +94,8 @@
 @layer components {
   /* Hero slide fade */
   .hero-slide {
-    @apply absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-[1200ms] ease-in-out;
+    @apply absolute inset-0 w-full h-full bg-cover bg-center ease-in-out;
+    transition: opacity 1200ms ease-in-out;
   }
 
   /* Typing cursor */
