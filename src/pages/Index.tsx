@@ -3,6 +3,7 @@ import { CheckCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Products from "@/components/Products";
+import ProductDetail from "@/components/ProductDetail";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -33,6 +34,7 @@ export default function Index() {
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState<CartItem[]>(getCart);
   const [cartOpen, setCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [toast, setToast] = useState<string | null>(null);
 
   // Fetch all data
@@ -126,6 +128,7 @@ export default function Index() {
         apiProducts={products}
         currency={currency}
         onAddToCart={handleAddToCart}
+        onProductClick={(p) => setSelectedProduct(p)}
       />
 
       <About
@@ -152,6 +155,15 @@ export default function Index() {
         country={store.country}
         socialLinks={socialLinks}
       />
+
+      {selectedProduct && (
+        <ProductDetail
+          product={selectedProduct}
+          currency={currency}
+          onClose={() => setSelectedProduct(null)}
+          onAddToCart={(p) => { handleAddToCart(p); setSelectedProduct(null); }}
+        />
+      )}
 
       <CartDrawer
         open={cartOpen}

@@ -19,14 +19,15 @@ interface ProductsProps {
   apiProducts: Product[];
   currency: string;
   onAddToCart: (product: Product) => void;
+  onProductClick: (product: Product) => void;
 }
 
-function ProductCard({ product, currency, onAddToCart }: { product: Product; currency: string; onAddToCart: (p: Product) => void }) {
+function ProductCard({ product, currency, onAddToCart, onProductClick }: { product: Product; currency: string; onAddToCart: (p: Product) => void; onProductClick: (p: Product) => void }) {
   const symbol = getCurrencySymbol(currency);
   const imgSrc = product.image_url || product.image || product1;
 
   return (
-    <div className="product-card group">
+    <div className="product-card group cursor-pointer" onClick={() => onProductClick(product)}>
       {/* Image */}
       <div className="relative overflow-hidden bg-secondary" style={{ paddingBottom: "100%" }}>
         <img
@@ -44,7 +45,7 @@ function ProductCard({ product, currency, onAddToCart }: { product: Product; cur
         )}
         {/* Quick add overlay */}
         <button
-          onClick={() => onAddToCart(product)}
+          onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
           className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] py-2.5 text-xs font-body font-semibold tracking-widest uppercase rounded-full opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
           style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
         >
@@ -80,7 +81,7 @@ function ProductCard({ product, currency, onAddToCart }: { product: Product; cur
             {symbol}{Number(product.price).toLocaleString()}
           </span>
           <button
-            onClick={() => onAddToCart(product)}
+            onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
             className="p-2.5 rounded-full transition-all duration-300 hover:scale-110 active:scale-95"
             style={{ background: "hsl(var(--secondary))", color: "hsl(var(--primary))" }}
             aria-label={`Add ${product.name} to cart`}
@@ -93,7 +94,7 @@ function ProductCard({ product, currency, onAddToCart }: { product: Product; cur
   );
 }
 
-export default function Products({ apiProducts, currency, onAddToCart }: ProductsProps) {
+export default function Products({ apiProducts, currency, onAddToCart, onProductClick }: ProductsProps) {
   const titleRef = useReveal();
 
   const displayProducts: Product[] =
@@ -127,7 +128,7 @@ export default function Products({ apiProducts, currency, onAddToCart }: Product
                 className="reveal"
                 style={{ transitionDelay: `${(i % 4) * 80}ms` }}
               >
-                <ProductCard product={product} currency={currency} onAddToCart={onAddToCart} />
+                <ProductCard product={product} currency={currency} onAddToCart={onAddToCart} onProductClick={onProductClick} />
               </div>
             );
           })}
