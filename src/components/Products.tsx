@@ -81,7 +81,7 @@ function ProductCard({ product, currency, onAddToCart, onProductClick }: { produ
             {symbol}{Number(product.price).toLocaleString()}
           </span>
           <button
-            onClick={() => onAddToCart(product)}
+            onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}
             className="p-2.5 rounded-full transition-all duration-300 hover:scale-110 active:scale-95"
             style={{ background: "hsl(var(--secondary))", color: "hsl(var(--primary))" }}
             aria-label={`Add ${product.name} to cart`}
