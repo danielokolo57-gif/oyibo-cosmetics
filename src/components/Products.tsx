@@ -19,6 +19,7 @@ interface ProductsProps {
   apiProducts: Product[];
   currency: string;
   onAddToCart: (product: Product) => void;
+  onProductClick: (product: Product) => void;
 }
 
 function ProductCard({ product, currency, onAddToCart }: { product: Product; currency: string; onAddToCart: (p: Product) => void }) {
