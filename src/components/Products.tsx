@@ -22,7 +22,7 @@ interface ProductsProps {
   onProductClick: (product: Product) => void;
 }
 
-function ProductCard({ product, currency, onAddToCart }: { product: Product; currency: string; onAddToCart: (p: Product) => void }) {
+function ProductCard({ product, currency, onAddToCart, onProductClick }: { product: Product; currency: string; onAddToCart: (p: Product) => void; onProductClick: (p: Product) => void }) {
   const symbol = getCurrencySymbol(currency);
   const imgSrc = product.image_url || product.image || product1;
 
