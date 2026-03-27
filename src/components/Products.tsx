@@ -94,7 +94,7 @@ function ProductCard({ product, currency, onAddToCart, onProductClick }: { produ
   );
 }
 
-export default function Products({ apiProducts, currency, onAddToCart }: ProductsProps) {
+export default function Products({ apiProducts, currency, onAddToCart, onProductClick }: ProductsProps) {
   const titleRef = useReveal();
 
   const displayProducts: Product[] =
