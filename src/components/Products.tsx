@@ -128,7 +128,7 @@ export default function Products({ apiProducts, currency, onAddToCart, onProduct
                 className="reveal"
                 style={{ transitionDelay: `${(i % 4) * 80}ms` }}
               >
-                <ProductCard product={product} currency={currency} onAddToCart={onAddToCart} />
+                <ProductCard product={product} currency={currency} onAddToCart={onAddToCart} onProductClick={onProductClick} />
               </div>
             );
           })}
