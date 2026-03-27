@@ -34,6 +34,7 @@ export default function Index() {
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState<CartItem[]>(getCart);
   const [cartOpen, setCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [toast, setToast] = useState<string | null>(null);
 
   // Fetch all data
