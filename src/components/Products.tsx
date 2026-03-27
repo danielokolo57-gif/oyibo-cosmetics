@@ -27,7 +27,7 @@ function ProductCard({ product, currency, onAddToCart, onProductClick }: { produ
   const imgSrc = product.image_url || product.image || product1;
 
   return (
-    <div className="product-card group">
+    <div className="product-card group cursor-pointer" onClick={() => onProductClick(product)}>
       {/* Image */}
       <div className="relative overflow-hidden bg-secondary" style={{ paddingBottom: "100%" }}>
         <img
