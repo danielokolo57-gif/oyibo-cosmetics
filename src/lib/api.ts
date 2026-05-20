@@ -62,7 +62,7 @@ export interface CartItem extends Product {
   quantity: number;
 }
 
-const PROJECT_ID = "website-3-5701";
+const PROJECT_ID = "oyibo-s-cosmetics-7426";
 const BASE_URL = "https://ctzluwfqilwgelexslco.supabase.co/functions/v1";
 
 export async function fetchStoreData(): Promise<{ store: StoreSettings; products: Product[] }> {
