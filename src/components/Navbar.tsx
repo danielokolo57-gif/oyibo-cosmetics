@@ -35,6 +35,8 @@ export default function Navbar({ storeName, cartItems, onCartOpen }: NavbarProps
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  const navTextColor = "hsl(var(--charcoal))";
+
   return (
     <>
       <nav
@@ -50,7 +52,7 @@ export default function Navbar({ storeName, cartItems, onCartOpen }: NavbarProps
             href="#home"
             onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}
             className="font-display text-2xl font-light tracking-widest transition-colors duration-200"
-            style={{ color: scrolled ? "hsl(var(--primary))" : "hsl(var(--primary-foreground))" }}
+            style={{ color: scrolled ? "hsl(var(--primary))" : navTextColor }}
           >
             {storeName || "Loading…"}
           </a>
@@ -62,7 +64,7 @@ export default function Navbar({ storeName, cartItems, onCartOpen }: NavbarProps
                 <button
                   onClick={() => scrollTo(link.href)}
                   className="nav-link"
-                  style={{ color: scrolled ? "hsl(var(--foreground))" : "hsl(var(--primary-foreground) / 0.9)" }}
+                  style={{ color: navTextColor }}
                 >
                   {link.label}
                 </button>
@@ -77,10 +79,7 @@ export default function Navbar({ storeName, cartItems, onCartOpen }: NavbarProps
               className="relative p-2 transition-transform duration-200 hover:scale-110 active:scale-95"
               aria-label="Open cart"
             >
-              <ShoppingBag
-                size={22}
-                style={{ color: scrolled ? "hsl(var(--foreground))" : "hsl(var(--primary-foreground))" }}
-              />
+              <ShoppingBag size={22} style={{ color: navTextColor }} />
               {cartCount > 0 && (
                 <span className="cart-badge">{cartCount}</span>
               )}
@@ -91,9 +90,9 @@ export default function Navbar({ storeName, cartItems, onCartOpen }: NavbarProps
               aria-label="Toggle menu"
             >
               {menuOpen ? (
-                <X size={22} style={{ color: scrolled ? "hsl(var(--foreground))" : "hsl(var(--primary-foreground))" }} />
+                <X size={22} style={{ color: navTextColor }} />
               ) : (
-                <Menu size={22} style={{ color: scrolled ? "hsl(var(--foreground))" : "hsl(var(--primary-foreground))" }} />
+                <Menu size={22} style={{ color: navTextColor }} />
               )}
             </button>
           </div>
